@@ -9,6 +9,7 @@ const options = yargs
  .option("s", { alias: "search", describe: "Search term", type: "string" })
  .argv;
 
+ 
 const greeting = `Hello, ${options.name}!`;
 console.log(greeting);
 
@@ -25,13 +26,13 @@ axios.get(url, { headers: { Accept: "application/json" } })
  .then(res => {
    if (options.search) {
      // if searching, loop over the results
-     res.data.bpi.forEach( j => {
-       console.log("\n" + j.bpi);
+     res.data.bpi.code.forEach( j => {
+       console.log(j);
      });
      if (res.data.results.length === 0) {
        console.log("Sorry that cuurency isn't availble");
      }
    } else {
-     console.log(res.data.bpi);
+     console.table(res.data.bpi);
    }
  });
